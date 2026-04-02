@@ -8,10 +8,10 @@ const stats = [
 ];
 
 const users = [
-  { initials: "SM", bg: "bg-indigo-100 text-primary", name: "Sarah Miller", email: "sarah.m@kinetic.ai", role: "Senior Designer", roleBg: "bg-indigo-50 text-primary", dept: "Product Design", status: "Active", statusColor: "text-secondary", dot: "bg-secondary", lastActive: "2 mins ago" },
-  { initials: "JH", bg: "bg-teal-100 text-teal-600", name: "James Huang", email: "j.huang@kinetic.ai", role: "Tech Lead", roleBg: "bg-slate-100 text-slate-600", dept: "Engineering", status: "Active", statusColor: "text-secondary", dot: "bg-secondary", lastActive: "14 mins ago" },
-  { initials: "EP", bg: "bg-amber-100 text-amber-600", name: "Elena Petrov", email: "elena.p@kinetic.ai", role: "Strategist", roleBg: "bg-indigo-50 text-primary", dept: "Marketing", status: "Pending", statusColor: "text-tertiary", dot: "bg-tertiary", lastActive: "Never" },
-  { initials: "DW", bg: "bg-slate-200 text-slate-500", name: "David Wilson", email: "d.wilson@kinetic.ai", role: "Analyst", roleBg: "bg-slate-100 text-slate-600", dept: "Finance", status: "Inactive", statusColor: "text-slate-500", dot: "bg-slate-300", lastActive: "3 days ago" },
+  { initials: "SM", bg: "bg-indigo-100 text-primary", name: "Sarah Miller", email: "sarah.m@HRMS.ai", role: "Senior Designer", roleBg: "bg-indigo-50 text-primary", dept: "Product Design", status: "Active", statusColor: "text-secondary", dot: "bg-secondary", lastActive: "2 mins ago" },
+  { initials: "JH", bg: "bg-teal-100 text-teal-600", name: "James Huang", email: "j.huang@HRMS.ai", role: "Tech Lead", roleBg: "bg-slate-100 text-slate-600", dept: "Engineering", status: "Active", statusColor: "text-secondary", dot: "bg-secondary", lastActive: "14 mins ago" },
+  { initials: "EP", bg: "bg-amber-100 text-amber-600", name: "Elena Petrov", email: "elena.p@HRMS.ai", role: "Strategist", roleBg: "bg-indigo-50 text-primary", dept: "Marketing", status: "Pending", statusColor: "text-tertiary", dot: "bg-tertiary", lastActive: "Never" },
+  { initials: "DW", bg: "bg-slate-200 text-slate-500", name: "David Wilson", email: "d.wilson@HRMS.ai", role: "Analyst", roleBg: "bg-slate-100 text-slate-600", dept: "Finance", status: "Inactive", statusColor: "text-slate-500", dot: "bg-slate-300", lastActive: "3 days ago" },
 ];
 
 export default function UserManagement() {

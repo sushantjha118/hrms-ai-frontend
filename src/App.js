@@ -16,6 +16,7 @@ import HROverview from "./pages/hr/HROverview";
 import LeaveManagement from "./pages/hr/LeaveManagement";
 import PerformanceReviews from "./pages/hr/PerformanceReviews";
 import RecruitmentManagement from "./pages/hr/RecruitmentManagement";
+import AttendancePage from "./pages/hr/AttendancePage";
 
 // Employee
 import EmployeePortal from "./pages/employee/EmployeePortal";
@@ -42,6 +43,8 @@ export default function App() {
         <Route path="/leave" element={<LeaveManagement />} />
         <Route path="/performance" element={<PerformanceReviews />} />
         <Route path="/recruitment" element={<RecruitmentManagement />} />
+
+        <Route path="/attendance" element={<AttendancePage />} />
 
         {/* Employee */}
         <Route path="/employee" element={<EmployeePortal />} />

@@ -20,11 +20,11 @@ export default function RegisterPage() {
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-8">
               <span className="material-symbols-outlined text-secondary-fixed text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-              <span className="font-headline font-extrabold text-2xl text-on-primary tracking-tight">Kinetic AI</span>
+              <span className="font-headline font-extrabold text-2xl text-on-primary tracking-tight">HRMS AI</span>
             </div>
             <div className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/10 ai-glow">
               <p className="text-xl lg:text-2xl font-headline font-semibold text-white leading-relaxed mb-6 italic">
-                "Kinetic AI transformed how we scale our teams - it feels less like software and more like a strategic partner."
+                "HRMS AI transformed how we scale our teams - it feels less like software and more like a strategic partner."
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-lg">SJ</div>
@@ -43,7 +43,7 @@ export default function RegisterPage() {
             {/* Mobile Logo */}
             <div className="md:hidden flex items-center gap-2 mb-8">
               <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-              <span className="font-headline font-extrabold text-xl text-primary tracking-tight">Kinetic AI</span>
+              <span className="font-headline font-extrabold text-xl text-primary tracking-tight">HRMS AI</span>
             </div>
 
             <header className="mb-10">

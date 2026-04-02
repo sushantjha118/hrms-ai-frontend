@@ -37,7 +37,7 @@ export default function LoginPage() {
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary-container mb-4 shadow-lg shadow-primary/20 ai-glow">
               <span className="material-symbols-outlined text-on-primary text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
             </div>
-            <h1 className="font-headline text-2xl font-extrabold tracking-tight text-on-surface mb-2">Kinetic AI Workspace</h1>
+            <h1 className="font-headline text-2xl font-extrabold tracking-tight text-on-surface mb-2">HRMS AI Workspace</h1>
             <p className="text-on-surface-variant font-medium">Welcome back. Enter your credentials to continue.</p>
           </div>
 
@@ -129,7 +129,7 @@ export default function LoginPage() {
         </div>
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-sm">support_agent</span>
-          <span>Need help? Contact support@kinetic.ai</span>
+          <span>Need help? Contact support@HRMS.ai</span>
         </div>
       </footer>
     </div>

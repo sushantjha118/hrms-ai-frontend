@@ -6,7 +6,7 @@ export default function LandingPage() {
       {/* TopNavBar */}
       <header className="w-full top-0 sticky z-50 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center glass-effect">
-          <div className="text-xl font-bold text-indigo-700 font-headline">Kinetic AI</div>
+          <div className="text-xl font-bold text-indigo-700 font-headline">HRMS AI</div>
           <nav className="hidden md:flex gap-8 items-center">
             <a href="#product" className="text-indigo-700 font-bold border-b-2 border-indigo-600 font-headline font-semibold text-sm transition-colors">Product</a>
             <a href="#features" className="text-slate-600 font-headline font-semibold text-sm hover:text-indigo-500 transition-colors">Features</a>
@@ -91,7 +91,7 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { icon: "person_search", border: "border-primary", iconBg: "bg-primary/10 text-primary", title: "AI-Powered Recruitment", desc: "Our proprietary talent scoring engine matches skills and cultural markers with 94% precision, reducing time-to-hire by 40%.", badge: "Efficiency Score", value: "+28%", badgeBg: "bg-secondary-container/10", badgeText: "text-secondary" },
-                { icon: "monitoring", border: "border-secondary", iconBg: "bg-secondary/10 text-secondary", title: "Cognitive Performance Insights", desc: "Beyond standard reviews. Kinetic AI analyzes engagement patterns and output velocity to provide real-time coaching triggers.", badge: "Sentiment Delta", value: "Stable", badgeBg: "bg-tertiary-container/10", badgeText: "text-tertiary" },
+                { icon: "monitoring", border: "border-secondary", iconBg: "bg-secondary/10 text-secondary", title: "Cognitive Performance Insights", desc: "Beyond standard reviews. HRMS AI analyzes engagement patterns and output velocity to provide real-time coaching triggers.", badge: "Sentiment Delta", value: "Stable", badgeBg: "bg-tertiary-container/10", badgeText: "text-tertiary" },
                 { icon: "auto_awesome", border: "border-tertiary", iconBg: "bg-tertiary/10 text-tertiary", title: "Automated Employee Experience", desc: "From seamless onboarding to personalized benefit management, our AI handles the logistics so you can focus on the people.", badge: "Autopilot Active", value: "92%", badgeBg: "bg-primary-container/10", badgeText: "text-primary" },
               ].map((f) => (
                 <div key={f.title} className={`bg-surface-container-lowest p-8 rounded-xl border-l-4 ${f.border} transition-transform hover:-translate-y-2`}>
@@ -181,7 +181,7 @@ export default function LandingPage() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary opacity-20 blur-[100px] -mr-32 -mt-32"></div>
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary opacity-20 blur-[100px] -ml-32 -mb-32"></div>
               <h2 className="text-3xl md:text-5xl font-bold text-surface mb-8 relative z-10 font-headline">Ready to evolve your workspace?</h2>
-              <p className="text-surface-variant/70 text-lg mb-12 max-w-xl mx-auto relative z-10">Join 2,500+ companies already building the future with Kinetic AI.</p>
+              <p className="text-surface-variant/70 text-lg mb-12 max-w-xl mx-auto relative z-10">Join 2,500+ companies already building the future with HRMS AI.</p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
                 <Link to="/register" className="px-10 py-5 bg-white text-on-surface font-bold rounded-xl hover:bg-surface-container transition-colors">Get Started Now</Link>
                 <button className="px-10 py-5 border border-surface-variant text-white font-bold rounded-xl hover:bg-white/10 transition-colors">View All Features</button>
@@ -195,8 +195,8 @@ export default function LandingPage() {
       <footer className="py-12 border-t border-surface-container">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-8">
-            <span className="text-xl font-bold text-indigo-700 font-headline">Kinetic AI</span>
-            <p className="text-on-surface-variant text-xs">© 2024 Kinetic AI Inc. All rights reserved.</p>
+            <span className="text-xl font-bold text-indigo-700 font-headline">HRMS AI</span>
+            <p className="text-on-surface-variant text-xs">© 2024 HRMS AI Inc. All rights reserved.</p>
           </div>
           <div className="flex gap-8 text-sm font-medium text-on-surface-variant">
             <a href="#privacy" className="hover:text-primary">Privacy Policy</a>

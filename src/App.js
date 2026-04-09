@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
 
 // Auth
 import LoginPage from "./pages/auth/LoginPage";
@@ -29,6 +30,7 @@ import CandidatePortal from "./pages/candidate/CandidatePortal";
 export default function App() {
   return (
     <ThemeProvider>
+    <AuthProvider>
     <BrowserRouter>
       <Routes>
         {/* Public */}
@@ -59,6 +61,7 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
+    </AuthProvider>
     </ThemeProvider>
   );
 }

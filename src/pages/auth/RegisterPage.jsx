@@ -1,13 +1,31 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import api from "../../services/api";
 
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate("/login");
+    setError("");
+    setLoading(true);
+    const form = new FormData(e.target);
+    try {
+      await api.post("/auth/register", {
+        name:     form.get("name"),
+        email:    form.get("email"),
+        password: form.get("password"),
+        role:     form.get("role") || "employee",
+      });
+      navigate("/login");
+    } catch (err) {
+      setError(err.response?.data?.error || "Registration failed.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,6 +68,9 @@ export default function RegisterPage() {
               <h1 className="text-3xl lg:text-4xl font-headline font-bold text-on-surface mb-2 tracking-tight">Get started</h1>
               <p className="text-on-surface-variant">Join the future of intelligent talent management.</p>
             </header>
+            {error && (
+              <div className="mb-4 p-3 rounded-lg bg-error-container/30 border border-error/20 text-sm text-error font-medium">{error}</div>
+            )}
 
             {/* Social SSO */}
             <div className="space-y-4 mb-8">
@@ -125,9 +146,8 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div className="pt-4">
-                <button className="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="submit">
-                  Create Account
-                  <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                <button disabled={loading} className="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group disabled:opacity-60" type="submit">
+                  {loading ? <span className="material-symbols-outlined animate-spin">progress_activity</span> : <>Create Account<span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></>}
                 </button>
               </div>
             </form>

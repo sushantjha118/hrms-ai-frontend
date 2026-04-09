@@ -22,6 +22,7 @@ export default function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    localStorage.setItem("userRole", selectedRole);
     navigate(roleRoutes[selectedRole]);
   };
 

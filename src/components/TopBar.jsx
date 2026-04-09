@@ -1,4 +1,13 @@
+const roleBadgeConfig = {
+  admin: { label: "Admin", color: "bg-primary/10 text-primary" },
+  hr: { label: "HR", color: "bg-secondary/10 text-secondary" },
+  employee: { label: "Employee", color: "bg-tertiary/10 text-tertiary" },
+  candidate: { label: "Candidate", color: "bg-slate-100 text-slate-600" },
+};
+
 export default function TopBar({ userName = "Alexander Vance", userRole = "Head of Operations", userAvatar = null }) {
+  const role = localStorage.getItem("userRole") || "employee";
+  const badge = roleBadgeConfig[role] || roleBadgeConfig.employee;
   return (
     <header className="flex items-center justify-between px-8 h-16 sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
       <div className="flex items-center gap-8">
@@ -37,6 +46,7 @@ export default function TopBar({ userName = "Alexander Vance", userRole = "Head 
               {userName.charAt(0)}
             </div>
           )}
+          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badge.color}`}>{badge.label}</span>
         </div>
       </div>
     </header>

@@ -131,7 +131,7 @@ export default function LandingPage() {
                 <div className="mb-8">
                   <h3 className="text-lg font-bold text-on-surface-variant mb-2 font-headline">Starter</h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-extrabold text-on-surface">$49</span>
+                    <span className="text-4xl font-extrabold text-on-surface">₹49</span>
                     <span className="text-on-surface-variant">/mo</span>
                   </div>
                 </div>
@@ -150,7 +150,7 @@ export default function LandingPage() {
                 <div className="mb-8">
                   <h3 className="text-lg font-bold text-primary mb-2 font-headline">Growth</h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-5xl font-extrabold text-on-surface">$199</span>
+                    <span className="text-5xl font-extrabold text-on-surface">₹199</span>
                     <span className="text-on-surface-variant">/mo</span>
                   </div>
                 </div>

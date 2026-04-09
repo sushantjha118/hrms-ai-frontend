@@ -4,7 +4,7 @@ const stats = [
   { icon: "groups", bg: "bg-primary-container/10 text-primary", label: "Total Employees", value: "1,200", badge: "+12%", badgeColor: "text-green-600 bg-green-50" },
   { icon: "work", bg: "bg-secondary-container/20 text-secondary", label: "Active Jobs", value: "45", badge: "Active", badgeColor: "text-indigo-600 bg-indigo-50" },
   { icon: "verified", bg: "bg-tertiary-container/10 text-tertiary", label: "Attendance", value: "98%", badge: "Peak", badgeColor: "text-on-surface-variant bg-surface-container-low" },
-  { icon: "payments", bg: "bg-primary/10 text-primary", label: "Monthly Revenue", value: "$250k", badge: "Target", badgeColor: "text-green-600 bg-green-50" },
+  { icon: "payments", bg: "bg-primary/10 text-primary", label: "Monthly Revenue", value: "₹250k", badge: "Target", badgeColor: "text-green-600 bg-green-50" },
 ];
 
 const activities = [
@@ -35,10 +35,10 @@ export default function AdminDashboard() {
         {stats.map((s) => (
           <div key={s.label} className="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
             <div className="flex justify-between items-start mb-4">
-              <div className={`p-3 ${s.bg} rounded-xl`}>
+              <div className={`p-3 ₹{s.bg} rounded-xl`}>
                 <span className="material-symbols-outlined">{s.icon}</span>
               </div>
-              <span className={`text-xs font-bold ${s.badgeColor} px-2 py-1 rounded-full`}>{s.badge}</span>
+              <span className={`text-xs font-bold ₹{s.badgeColor} px-2 py-1 rounded-full`}>{s.badge}</span>
             </div>
             <h3 className="text-sm font-semibold text-on-surface-variant mb-1">{s.label}</h3>
             <p className="text-3xl font-extrabold font-headline tracking-tighter text-on-surface">{s.value}</p>
@@ -116,7 +116,7 @@ export default function AdminDashboard() {
                   <span>{r.label}</span><span>{r.pct}%</span>
                 </div>
                 <div className="h-2 w-full bg-surface-container-low rounded-full overflow-hidden">
-                  <div className={`h-full ${r.color} rounded-full`} style={{ width: `${r.pct}%` }}></div>
+                  <div className={`h-full ₹{r.color} rounded-full`} style={{ width: `₹{r.pct}%` }}></div>
                 </div>
               </div>
             ))}

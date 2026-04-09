@@ -15,7 +15,7 @@ const schedule = [
 
 const announcements = [
   { category: "Company Update", categoryColor: "text-indigo-500", title: "New Quarterly Benefits & Health Program", desc: "We are excited to announce a range of new health and wellness benefits starting next month...", time: "2h ago" },
-  { category: "Events", categoryColor: "text-secondary", title: "Hackathon 2024: Innovate with Generative AI", desc: "Join the annual engineering hackathon and win prizes up to $5000 and direct project funding.", time: "Yesterday" },
+  { category: "Events", categoryColor: "text-secondary", title: "Hackathon 2024: Innovate with Generative AI", desc: "Join the annual engineering hackathon and win prizes up to ₹5000 and direct project funding.", time: "Yesterday" },
 ];
 
 export default function EmployeePortal() {

@@ -19,10 +19,10 @@ export default function RegisterPage() {
           <div className="absolute inset-0 z-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-8">
-              <span className="material-symbols-outlined text-secondary-fixed text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+              <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-10 h-10 rounded-xl object-contain" />
               <span className="font-headline font-extrabold text-2xl text-on-primary tracking-tight">HRMS AI</span>
             </div>
-            <div className="bg-white/10 backdrop-blur-md p-8 rounded-xl border border-white/10 ai-glow">
+            <div className="bg-on-primary/10 backdrop-blur-md p-8 rounded-xl border border-on-primary/10 ai-glow">
               <p className="text-xl lg:text-2xl font-headline font-semibold text-white leading-relaxed mb-6 italic">
                 "HRMS AI transformed how we scale our teams - it feels less like software and more like a strategic partner."
               </p>
@@ -42,7 +42,7 @@ export default function RegisterPage() {
           <div className="max-w-md mx-auto w-full">
             {/* Mobile Logo */}
             <div className="md:hidden flex items-center gap-2 mb-8">
-              <span className="material-symbols-outlined text-primary text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
+              <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-8 h-8 rounded-lg object-contain" />
               <span className="font-headline font-extrabold text-xl text-primary tracking-tight">HRMS AI</span>
             </div>
 
@@ -125,7 +125,7 @@ export default function RegisterPage() {
                 </div>
               </div>
               <div className="pt-4">
-                <button className="w-full bg-indigo-gradient text-white font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="submit">
+                <button className="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold py-4 rounded-lg shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group" type="submit">
                   Create Account
                   <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </button>
@@ -148,7 +148,7 @@ export default function RegisterPage() {
       </div>
 
       {/* AI Insight Badge */}
-      <div className="fixed bottom-8 right-8 hidden lg:flex items-center gap-3 bg-white border-l-4 border-tertiary p-4 rounded-lg shadow-xl animate-pulse">
+      <div className="fixed bottom-8 right-8 hidden lg:flex items-center gap-3 bg-surface-container-lowest border-l-4 border-tertiary p-4 rounded-lg shadow-xl animate-pulse">
         <div className="w-10 h-10 rounded-full bg-tertiary-container/10 flex items-center justify-center">
           <span className="material-symbols-outlined text-tertiary">psychology</span>
         </div>

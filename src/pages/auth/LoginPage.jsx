@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
 
 const roles = [
   { value: "admin", icon: "admin_panel_settings", label: "Admin" },
@@ -19,6 +20,7 @@ export default function LoginPage() {
   const [selectedRole, setSelectedRole] = useState("admin");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { dark, toggle } = useTheme();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,9 +37,7 @@ export default function LoginPage() {
         <div className="w-full max-w-[440px]">
           {/* Brand */}
           <div className="text-center mb-10">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary-container mb-4 shadow-lg shadow-primary/20 ai-glow">
-              <span className="material-symbols-outlined text-on-primary text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
-            </div>
+            <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-14 h-14 rounded-xl object-contain mx-auto mb-4 shadow-lg shadow-primary/20" />
             <h1 className="font-headline text-2xl font-extrabold tracking-tight text-on-surface mb-2">HRMS AI Workspace</h1>
             <p className="text-on-surface-variant font-medium">Welcome back. Enter your credentials to continue.</p>
           </div>
@@ -99,21 +99,7 @@ export default function LoginPage() {
               </button>
             </form>
 
-            {/* Divider */}
-            <div className="relative my-8">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-outline-variant/30"></div>
-              </div>
-              <div className="relative flex justify-center text-xs uppercase tracking-widest font-bold">
-                <span className="bg-surface-container-lowest px-4 text-outline">or connect with</span>
-              </div>
-            </div>
 
-            {/* SSO */}
-            <button className="w-full py-3 bg-surface-container-low hover:bg-surface-container transition-colors rounded-lg flex items-center justify-center gap-3 group">
-              <span className="material-symbols-outlined text-on-surface-variant">key</span>
-              <span className="text-sm font-semibold text-on-surface-variant group-hover:text-on-surface">Continue with SSO</span>
-            </button>
           </div>
 
           <p className="mt-8 text-center text-sm font-medium text-on-surface-variant">
@@ -128,9 +114,14 @@ export default function LoginPage() {
           <a href="#privacy" className="hover:text-on-surface transition-colors">Privacy Policy</a>
           <a href="#terms" className="hover:text-on-surface transition-colors">Terms of Service</a>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="material-symbols-outlined text-sm">support_agent</span>
-          <span>Need help? Contact support@HRMS.ai</span>
+        <div className="flex items-center gap-4">
+          <button onClick={toggle} className="p-2 text-outline hover:bg-surface-container rounded-full transition-colors" title="Toggle theme">
+            <span className="material-symbols-outlined text-lg">{dark ? "light_mode" : "dark_mode"}</span>
+          </button>
+          <div className="flex items-center gap-2">
+            <span className="material-symbols-outlined text-sm">support_agent</span>
+            <span>Need help? Contact support@HRMS.ai</span>
+          </div>
         </div>
       </footer>
     </div>

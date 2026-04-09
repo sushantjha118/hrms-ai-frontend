@@ -1,20 +1,28 @@
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 export default function LandingPage() {
+  const { dark, toggle } = useTheme();
   return (
     <div className="bg-surface text-on-surface overflow-x-hidden">
       {/* TopNavBar */}
       <header className="w-full top-0 sticky z-50 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center glass-effect">
-          <div className="text-xl font-bold text-indigo-700 font-headline">HRMS AI</div>
+          <div className="text-xl font-bold text-primary font-headline flex items-center gap-2">
+            <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-8 h-8 rounded-lg object-contain" />
+            HRMS AI
+          </div>
           <nav className="hidden md:flex gap-8 items-center">
-            <a href="#product" className="text-indigo-700 font-bold border-b-2 border-indigo-600 font-headline font-semibold text-sm transition-colors">Product</a>
-            <a href="#features" className="text-slate-600 font-headline font-semibold text-sm hover:text-indigo-500 transition-colors">Features</a>
-            <a href="#pricing" className="text-slate-600 font-headline font-semibold text-sm hover:text-indigo-500 transition-colors">Pricing</a>
+            <a href="#product" className="text-primary font-bold border-b-2 border-primary font-headline font-semibold text-sm transition-colors">Product</a>
+            <a href="#features" className="text-on-surface-variant font-headline font-semibold text-sm hover:text-primary transition-colors">Features</a>
+            <a href="#pricing" className="text-on-surface-variant font-headline font-semibold text-sm hover:text-primary transition-colors">Pricing</a>
           </nav>
           <div className="flex items-center gap-4">
-            <Link to="/login" className="font-headline font-semibold text-sm text-slate-600 hover:text-indigo-500 transition-colors">Login</Link>
-            <Link to="/register" className="bg-indigo-600 text-white px-5 py-2.5 rounded-lg font-headline font-semibold text-sm hover:bg-indigo-700 transition-all">Sign Up</Link>
+            <button onClick={toggle} className="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-colors" title="Toggle theme">
+              <span className="material-symbols-outlined">{dark ? "light_mode" : "dark_mode"}</span>
+            </button>
+            <Link to="/login" className="font-headline font-semibold text-sm text-on-surface-variant hover:text-primary transition-colors">Login</Link>
+            <Link to="/register" className="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-headline font-semibold text-sm hover:bg-primary-container transition-all">Sign Up</Link>
           </div>
         </div>
       </header>
@@ -46,7 +54,7 @@ export default function LandingPage() {
             {/* Dashboard Mockup */}
             <div className="relative group mx-auto max-w-5xl">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-              <div className="relative bg-surface-container-lowest rounded-2xl overflow-hidden shadow-2xl border border-white/40">
+              <div className="relative bg-surface-container-lowest rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/20">
                 <div className="w-full h-64 bg-gradient-to-br from-primary/5 to-secondary/5 flex items-center justify-center">
                   <p className="text-on-surface-variant font-medium">Dashboard Preview</p>
                 </div>
@@ -183,8 +191,8 @@ export default function LandingPage() {
               <h2 className="text-3xl md:text-5xl font-bold text-surface mb-8 relative z-10 font-headline">Ready to evolve your workspace?</h2>
               <p className="text-surface-variant/70 text-lg mb-12 max-w-xl mx-auto relative z-10">Join 2,500+ companies already building the future with HRMS AI.</p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                <Link to="/register" className="px-10 py-5 bg-white text-on-surface font-bold rounded-xl hover:bg-surface-container transition-colors">Get Started Now</Link>
-                <button className="px-10 py-5 border border-surface-variant text-white font-bold rounded-xl hover:bg-white/10 transition-colors">View All Features</button>
+                <Link to="/register" className="px-10 py-5 bg-surface-container-lowest text-on-surface font-bold rounded-xl hover:bg-surface-container transition-colors">Get Started Now</Link>
+                <button className="px-10 py-5 border border-outline-variant text-on-primary font-bold rounded-xl hover:bg-surface-container/20 transition-colors">View All Features</button>
               </div>
             </div>
           </div>
@@ -192,10 +200,13 @@ export default function LandingPage() {
       </main>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-surface-container">
+      <footer className="py-12 border-t border-outline-variant/30">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-8">
-            <span className="text-xl font-bold text-indigo-700 font-headline">HRMS AI</span>
+            <span className="text-xl font-bold text-primary font-headline flex items-center gap-2">
+            <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-8 h-8 rounded-lg object-contain" />
+            HRMS AI
+          </span>
             <p className="text-on-surface-variant text-xs">© 2024 HRMS AI Inc. All rights reserved.</p>
           </div>
           <div className="flex gap-8 text-sm font-medium text-on-surface-variant">

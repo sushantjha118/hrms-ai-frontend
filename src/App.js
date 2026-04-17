@@ -26,6 +26,7 @@ import EmployeeDirectory from "./pages/employee/EmployeeDirectory";
 
 // Candidate
 import CandidatePortal from "./pages/candidate/CandidatePortal";
+import SettingsPage from "./pages/settings/SettingsPage";
 
 export default function App() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
 
         {/* Candidate */}
         <Route path="/candidate" element={<CandidatePortal />} />
+        <Route path="/settings" element={<SettingsPage />} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />

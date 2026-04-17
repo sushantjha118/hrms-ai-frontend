@@ -32,11 +32,6 @@ export default function LoginPage() {
         email:    form.get("email"),
         password: form.get("password"),
       });
-      if (data.user.role !== selectedRole) {
-        setError(`This account is a "${data.user.role}" — please select the correct role.`);
-        setLoading(false);
-        return;
-      }
       login(data.user, data.token);
       navigate(roleRoutes[data.user.role]);
     } catch (err) {
@@ -90,19 +85,7 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="block text-sm font-semibold text-on-surface-variant ml-1">Account Role</label>
-                <div className="grid grid-cols-2 gap-3">
-                  {roles.map((role) => (
-                    <label key={role.value}
-                      className={`relative flex items-center p-3 rounded-lg cursor-pointer hover:bg-surface-container transition-all ${selectedRole === role.value ? "border-2 border-primary bg-primary/5" : "bg-surface-container-low border-2 border-transparent"}`}>
-                      <input className="sr-only" name="role" type="radio" value={role.value} checked={selectedRole === role.value} onChange={() => setSelectedRole(role.value)} />
-                      <span className={`material-symbols-outlined mr-2 text-lg ${selectedRole === role.value ? "text-primary" : "text-outline"}`}>{role.icon}</span>
-                      <span className={`text-xs font-semibold ${selectedRole === role.value ? "text-on-surface" : "text-on-surface-variant"}`}>{role.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+              {/* Role Selection removed — role is determined by backend */}
 
               <button disabled={loading}
                 className="w-full py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold rounded-lg shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60"

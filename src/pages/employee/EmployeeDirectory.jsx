@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
+import { useAuth } from "../../context/AuthContext";
 import api from "../../services/api";
 
 export default function EmployeeDirectory() {
+  const { user }    = useAuth();
+  const isHR        = user?.role === "admin" || user?.role === "hr";
   const [employees, setEmployees] = useState([]);
   const [depts,     setDepts]     = useState([]);
   const [loading,   setLoading]   = useState(true);
@@ -10,10 +13,18 @@ export default function EmployeeDirectory() {
   const [deptFilter,setDeptFilter]= useState("");
 
   useEffect(() => {
-    Promise.all([api.get("/employees"), api.get("/departments")])
-      .then(([emp, dept]) => { setEmployees(emp.data); setDepts(dept.data); })
-      .finally(() => setLoading(false));
-  }, []);
+    if (isHR) {
+      Promise.all([api.get("/employees"), api.get("/departments")])
+        .then(([emp, dept]) => { setEmployees(emp.data); setDepts(dept.data); })
+        .finally(() => setLoading(false));
+    } else {
+      // Non-HR: only departments available; employees list is restricted
+      api.get("/departments")
+        .then((dept) => setDepts(dept.data))
+        .catch(() => {})
+        .finally(() => setLoading(false));
+    }
+  }, [isHR]);
 
   const filtered = employees.filter((e) => {
     const matchSearch = !search || e.name?.toLowerCase().includes(search.toLowerCase()) || e.designation?.toLowerCase().includes(search.toLowerCase());
@@ -78,6 +89,12 @@ export default function EmployeeDirectory() {
           {loading ? (
             <div className="flex items-center justify-center h-64">
               <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+            </div>
+          ) : !isHR ? (
+            <div className="flex flex-col items-center justify-center h-64 text-center">
+              <span className="material-symbols-outlined text-5xl text-outline mb-4">lock</span>
+              <h3 className="font-headline font-bold text-lg text-on-surface mb-2">Access Restricted</h3>
+              <p className="text-on-surface-variant text-sm max-w-sm">The full employee directory is only available to HR and Admin users. Contact your HR team for employee information.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">

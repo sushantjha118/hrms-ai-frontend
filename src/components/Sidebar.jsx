@@ -3,31 +3,31 @@ import { useAuth } from "../context/AuthContext";
 
 const navConfig = {
   admin: [
-    { to: "/admin",      icon: "dashboard",        label: "Dashboard" },
-    { to: "/users",      icon: "manage_accounts",  label: "User Management" },
-    { to: "/employees",  icon: "badge",            label: "Employees" },
-    { to: "/recruitment",icon: "person_search",    label: "Recruitment" },
-    { to: "/attendance", icon: "schedule",         label: "Attendance" },
-    { to: "/leave",      icon: "event_busy",       label: "Leave" },
-    { to: "/performance",icon: "query_stats",      label: "Performance" },
+    { to: "/admin",       icon: "dashboard",        label: "Dashboard" },
+    { to: "/users",       icon: "manage_accounts",  label: "User Management" },
+    { to: "/employees",   icon: "badge",            label: "Employees" },
+    { to: "/recruitment", icon: "person_search",    label: "Recruitment" },
+    { to: "/attendance",  icon: "schedule",         label: "Attendance" },
+    { to: "/leave",       icon: "event_busy",       label: "Leave" },
+    { to: "/performance", icon: "query_stats",      label: "Performance" },
   ],
   hr: [
-    { to: "/hr",         icon: "dashboard",        label: "HR Overview" },
-    { to: "/employees",  icon: "badge",            label: "Employee Directory" },
-    { to: "/recruitment",icon: "person_search",    label: "Recruitment" },
-    { to: "/attendance", icon: "schedule",         label: "Attendance" },
-    { to: "/leave",      icon: "event_busy",       label: "Leave" },
-    { to: "/performance",icon: "query_stats",      label: "Performance" },
+    { to: "/hr",          icon: "dashboard",        label: "HR Overview" },
+    { to: "/employees",   icon: "badge",            label: "Employee Directory" },
+    { to: "/recruitment", icon: "person_search",    label: "Recruitment" },
+    { to: "/attendance",  icon: "schedule",         label: "Attendance" },
+    { to: "/leave",       icon: "event_busy",       label: "Leave" },
+    { to: "/performance", icon: "query_stats",      label: "Performance" },
   ],
   employee: [
-    { to: "/employee",   icon: "person",           label: "My Portal" },
-    { to: "/employees",  icon: "badge",            label: "Employee Directory" },
-    { to: "/attendance", icon: "schedule",         label: "My Attendance" },
-    { to: "/leave",      icon: "event_busy",       label: "Apply Leave" },
-    { to: "/performance",icon: "query_stats",      label: "My Performance" },
+    { to: "/employee",    icon: "person",           label: "My Portal" },
+    { to: "/employees",   icon: "badge",            label: "Employee Directory" },
+    { to: "/attendance",  icon: "schedule",         label: "My Attendance" },
+    { to: "/leave",       icon: "event_busy",       label: "Apply Leave" },
+    { to: "/performance", icon: "query_stats",      label: "My Performance" },
   ],
   candidate: [
-    { to: "/candidate",  icon: "work_outline",     label: "Job Board" },
+    { to: "/candidate",   icon: "work_outline",     label: "Job Board" },
   ],
 };
 
@@ -36,7 +36,7 @@ const roleLabels = {
   employee: "Employee Portal", candidate: "Candidate Portal",
 };
 
-export default function Sidebar() {
+export default function Sidebar({ collapsed, onToggle }) {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const role = user?.role || localStorage.getItem("userRole") || "employee";
@@ -44,46 +44,74 @@ export default function Sidebar() {
 
   const handleLogout = () => { logout(); navigate("/login"); };
 
+  const activeClass = collapsed
+    ? "flex items-center justify-center p-3 bg-surface-container-lowest text-primary rounded-lg shadow-sm border-l-4 border-primary"
+    : "flex items-center gap-3 px-4 py-3 bg-surface-container-lowest text-primary rounded-lg shadow-sm border-l-4 border-primary font-medium";
+
+  const inactiveClass = collapsed
+    ? "flex items-center justify-center p-3 text-on-surface-variant hover:text-primary transition-colors duration-200"
+    : "flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-200 font-medium";
+
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 z-50 flex flex-col p-4 gap-y-2 bg-surface-container-low">
-      <div className="mb-8 px-4 flex items-center gap-3">
-        <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-10 h-10 rounded-xl object-contain" />
-        <div>
-          <h1 className="text-xl font-extrabold tracking-tighter text-primary font-headline">HRMS AI</h1>
-          <p className="text-xs text-on-surface-variant font-medium">{roleLabels[role]}</p>
-        </div>
+    <aside className={`fixed left-0 top-0 h-screen z-50 flex flex-col p-4 gap-y-2 bg-surface-container-low transition-all duration-300 ${collapsed ? "w-16" : "w-64"}`}>
+      {/* Logo + toggle */}
+      <div className={`mb-6 flex items-center ${collapsed ? "justify-center" : "justify-between px-2"}`}>
+        {!collapsed && (
+          <div className="flex items-center gap-3">
+            <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-9 h-9 rounded-xl object-contain" />
+            <div>
+              <h1 className="text-xl font-extrabold tracking-tighter text-primary font-headline">HRMS AI</h1>
+              <p className="text-xs text-on-surface-variant font-medium">{roleLabels[role]}</p>
+            </div>
+          </div>
+        )}
+        <button
+          onClick={onToggle}
+          className="p-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors"
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          <span className="material-symbols-outlined text-xl">
+            {collapsed ? "chevron_right" : "chevron_left"}
+          </span>
+        </button>
       </div>
+
+      {/* Logo icon only when collapsed */}
+      {collapsed && (
+        <div className="flex justify-center mb-2">
+          <img src="/assets/images/hrms-ai-logo.png" alt="HRMS AI" className="w-8 h-8 rounded-xl object-contain" />
+        </div>
+      )}
 
       <nav className="flex-1 space-y-1">
         {navItems.map(({ to, icon, label }) => (
           <NavLink key={to} to={to}
             end={["/admin", "/hr", "/employee", "/candidate"].includes(to)}
-            className={({ isActive }) =>
-              isActive
-                ? "flex items-center gap-3 px-4 py-3 bg-surface-container-lowest text-primary rounded-lg shadow-sm border-l-4 border-primary font-medium"
-                : "flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:translate-x-1 transition-transform duration-200 font-medium"
-            }>
+            title={collapsed ? label : undefined}
+            className={({ isActive }) => isActive ? activeClass : inactiveClass}
+          >
             <span className="material-symbols-outlined">{icon}</span>
-            <span className="font-headline">{label}</span>
+            {!collapsed && <span className="font-headline">{label}</span>}
           </NavLink>
         ))}
       </nav>
 
-      <div className="mt-auto pt-6 space-y-1">
-        {role === "admin" && (
-          <button className="w-full mb-4 py-3 px-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-sm shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
-            Launch AI Audit
-          </button>
-        )}
-        <a href="#settings" className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors font-medium">
+      <div className="mt-auto pt-4 space-y-1">
+        <NavLink to="/settings"
+          title={collapsed ? "Settings" : undefined}
+          className={({ isActive }) => isActive ? activeClass : inactiveClass}
+        >
           <span className="material-symbols-outlined">settings</span>
-          <span className="font-headline">Settings</span>
-        </a>
-        <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-error transition-colors font-medium">
+          {!collapsed && <span className="font-headline">Settings</span>}
+        </NavLink>
+        <button onClick={handleLogout}
+          title={collapsed ? "Logout" : undefined}
+          className={`w-full text-on-surface-variant hover:text-error transition-colors font-medium ${collapsed ? "flex items-center justify-center p-3" : "flex items-center gap-3 px-4 py-3"}`}
+        >
           <span className="material-symbols-outlined">logout</span>
-          <span className="font-headline">Logout</span>
+          {!collapsed && <span className="font-headline">Logout</span>}
         </button>
+        {!collapsed && <p className="text-[10px] text-outline text-center pt-3 pb-1">HRMS AI v1.0 · 2024</p>}
       </div>
     </aside>
   );

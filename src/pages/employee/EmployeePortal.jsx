@@ -20,19 +20,20 @@ export default function EmployeePortal() {
   const [loading,  setLoading]  = useState(true);
 
   useEffect(() => {
+    const safe = (p) => p.catch(() => ({ data: [] }));
     Promise.all([
-      api.get("/employees/me"),
-      api.get("/leaves/me"),
-      api.get("/performance/me"),
-      api.get("/announcements"),
-      api.get("/attendance/me"),
+      safe(api.get("/employees/me")),
+      safe(api.get("/leaves/me")),
+      safe(api.get("/performance/me")),
+      safe(api.get("/announcements")),
+      safe(api.get("/attendance/me")),
     ]).then(([pr, lv, rv, an, at]) => {
       setProfile(pr.data);
-      setLeaves(lv.data);
-      setReviews(rv.data);
-      setAnnounce(an.data.slice(0, 3));
-      setAttend(at.data.slice(0, 30));
-    }).catch(() => {}).finally(() => setLoading(false));
+      setLeaves(Array.isArray(lv.data) ? lv.data : []);
+      setReviews(Array.isArray(rv.data) ? rv.data : []);
+      setAnnounce(Array.isArray(an.data) ? an.data.slice(0, 3) : []);
+      setAttend(Array.isArray(at.data) ? at.data.slice(0, 30) : []);
+    }).finally(() => setLoading(false));
   }, []);
 
   const presentDays  = attend.filter(a => a.status === "present" || a.status === "late").length;

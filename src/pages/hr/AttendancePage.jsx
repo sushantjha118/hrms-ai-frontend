@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
+import { SkeletonStatCard, SkeletonCalendar, SkeletonTable, SkeletonText } from "../../components/Skeleton";
 import api from "../../services/api";
 
 const tabs = ["All", "Present", "Absent", "Late"];
@@ -378,9 +379,14 @@ export default function AttendancePage() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
-        </div>
+        <>
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {Array.from({ length: 4 }).map((_, i) => <SkeletonStatCard key={i} />)}
+          </section>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            {Array.from({ length: 2 }).map((_, i) => <SkeletonCalendar key={i} />)}
+          </div>
+        </>
       ) : (
         <>
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

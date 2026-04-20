@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
+import { SkeletonStatCardTall, SkeletonTable, SkeletonText, SkeletonAvatar } from "../../components/Skeleton";
 import api from "../../services/api";
 
 const typeColor = {
@@ -92,14 +93,32 @@ export default function LeaveManagement() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
-        </div>
+        <>
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => <SkeletonStatCardTall key={i} />)}
+          </section>
+          <div className="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+            <div className="px-6 py-5 border-b border-outline-variant/10"><SkeletonText className="h-5 w-40" /></div>
+            <table className="w-full">
+              <thead className="bg-surface-container-low/50">
+                <tr>{Array.from({length:6}).map((_,i)=><th key={i} className="px-6 py-4"><SkeletonText className="h-3 w-16" /></th>)}</tr>
+              </thead>
+              <tbody className="divide-y divide-outline-variant/10">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <tr key={i}>
+                    <td className="px-6 py-4"><div className="flex items-center gap-3"><SkeletonAvatar /><div className="space-y-1.5"><SkeletonText className="h-3 w-24" /><SkeletonText className="h-2.5 w-16" /></div></div></td>
+                    {Array.from({length:5}).map((_,j)=><td key={j} className="px-6 py-4"><SkeletonText className="h-3 w-16" /></td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       ) : (
         <>
           {/* Stats */}
           <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {isHR ? [
+            {(isHR ? [
               { icon: "pending_actions", label: "Pending Approvals", value: stats.pending,          color: "text-primary bg-indigo-50" },
               { icon: "group_off",       label: "On Leave Today",    value: stats.on_leave_today,   color: "text-secondary bg-cyan-50" },
               { icon: "analytics",       label: "Monthly Requests",  value: stats.monthly_requests, color: "text-tertiary bg-orange-50" },
@@ -107,7 +126,7 @@ export default function LeaveManagement() {
               { icon: "pending_actions", label: "Pending",  value: myPending,  color: "text-amber-600 bg-amber-50" },
               { icon: "check_circle",    label: "Approved", value: myApproved, color: "text-emerald-600 bg-emerald-50" },
               { icon: "cancel",          label: "Rejected", value: myRejected, color: "text-error bg-error-container/20" },
-            ].map((s) => (
+            ]).map((s) => (
               <div key={s.label} className="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col gap-4">
                 <span className={`material-symbols-outlined p-2 rounded-lg w-fit ${s.color}`}>{s.icon}</span>
                 <div>

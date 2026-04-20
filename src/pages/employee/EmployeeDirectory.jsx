@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
+import { SkeletonEmployeeCard, SkeletonText, SkeletonBox } from "../../components/Skeleton";
 import api from "../../services/api";
 
 export default function EmployeeDirectory() {
@@ -87,8 +88,8 @@ export default function EmployeeDirectory() {
 
         <div className="flex-1">
           {loading ? (
-            <div className="flex items-center justify-center h-64">
-              <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => <SkeletonEmployeeCard key={i} />)}
             </div>
           ) : !isHR ? (
             <div className="flex flex-col items-center justify-center h-64 text-center">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
+import { SkeletonText, SkeletonBox, SkeletonStatCardTall } from "../../components/Skeleton";
 import api from "../../services/api";
 
 const tabs = ["Available Jobs", "My Applications"];
@@ -90,8 +91,25 @@ export default function CandidatePortal() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-48">
-          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+        <div className="space-y-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+              <div className="flex justify-between items-start mb-4">
+                <div className="flex gap-4">
+                  <SkeletonBox className="w-12 h-12 rounded-lg" />
+                  <div className="space-y-2">
+                    <SkeletonText className="h-4 w-48" />
+                    <SkeletonText className="h-3 w-36" />
+                  </div>
+                </div>
+                <SkeletonBox className="h-6 w-20 rounded" />
+              </div>
+              <div className="flex justify-between items-center mt-4">
+                <SkeletonText className="h-3 w-64" />
+                <SkeletonBox className="h-8 w-24 rounded-lg" />
+              </div>
+            </div>
+          ))}
         </div>
       ) : activeTab === 0 ? (
         <div className="space-y-4">

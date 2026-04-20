@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
+import { SkeletonStatCardTall, SkeletonTable, SkeletonText, SkeletonDetailPanel } from "../../components/Skeleton";
 import api from "../../services/api";
 
 const statusBg = {
@@ -65,9 +66,26 @@ export default function PerformanceReviews() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
-        </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => <SkeletonStatCardTall key={i} />)}
+          </div>
+          <div className="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+            <div className="p-6 border-b border-outline-variant/10"><SkeletonText className="h-5 w-40" /></div>
+            <table className="w-full">
+              <thead className="bg-surface-container-low">
+                <tr>{Array.from({length:6}).map((_,i)=><th key={i} className="px-6 py-4"><SkeletonText className="h-3 w-16" /></th>)}</tr>
+              </thead>
+              <tbody className="divide-y divide-outline-variant/10">
+                {Array.from({length:5}).map((_,i)=>(
+                  <tr key={i}>{Array.from({length:6}).map((_,j)=>(
+                    <td key={j} className="px-6 py-4"><SkeletonText className="h-3 w-20" /></td>
+                  ))}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

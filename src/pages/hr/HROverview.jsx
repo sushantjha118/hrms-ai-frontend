@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
+import { SkeletonStatCardTall, SkeletonTable, SkeletonFeedItem, SkeletonText, SkeletonBox } from "../../components/Skeleton";
 import api from "../../services/api";
 
 export default function HROverview() {
@@ -39,9 +40,27 @@ export default function HROverview() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
-        </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => <SkeletonStatCardTall key={i} />)}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {Array.from({ length: 2 }).map((_, i) => (
+              <div key={i} className="bg-surface-container-lowest rounded-xl p-8 shadow-sm space-y-4">
+                <SkeletonText className="h-5 w-40" />
+                {Array.from({ length: 3 }).map((_, j) => (
+                  <div key={j} className="flex items-center gap-3 p-4 rounded-xl bg-surface-container-low">
+                    <div className="w-9 h-9 rounded-full bg-surface-container-high animate-pulse flex-shrink-0" />
+                    <div className="flex-1 space-y-1.5">
+                      <SkeletonText className="h-3 w-28" />
+                      <SkeletonText className="h-2.5 w-20" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

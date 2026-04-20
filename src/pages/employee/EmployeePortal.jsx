@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import { useAuth } from "../../context/AuthContext";
+import { SkeletonStatCardTall, SkeletonFeedItem, SkeletonText, SkeletonBox } from "../../components/Skeleton";
 import api from "../../services/api";
 
 const quickActions = [
@@ -56,8 +57,28 @@ export default function EmployeePortal() {
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <span className="material-symbols-outlined animate-spin text-4xl text-primary">progress_activity</span>
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => <SkeletonStatCardTall key={i} />)}
+          </div>
+          <div className="col-span-12 lg:col-span-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+            <SkeletonText className="h-5 w-32 mb-4" />
+            <div className="grid grid-cols-2 gap-3">
+              {Array.from({ length: 4 }).map((_, i) => <SkeletonBox key={i} className="h-20 rounded-xl" />)}
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-5 bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+            <SkeletonText className="h-5 w-36 mb-4" />
+            <div className="space-y-3">
+              {Array.from({ length: 3 }).map((_, i) => <SkeletonBox key={i} className="h-14 rounded-xl" />)}
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-7 bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+            <SkeletonText className="h-5 w-36 mb-6" />
+            <div className="space-y-5">
+              {Array.from({ length: 3 }).map((_, i) => <SkeletonFeedItem key={i} />)}
+            </div>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-12 gap-6">

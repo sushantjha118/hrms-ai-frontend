@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 # Getting Started with Create React WebApplication
+=======
+# Getting Started with Create React Web application 
+>>>>>>> aee3a82d1cda11b2b98064cf5d92f668e454851e
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
